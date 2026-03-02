@@ -1,4 +1,3 @@
-const http = require('http');
 
 const express = require('express')
 
@@ -6,21 +5,20 @@ const express = require('express')
 
  const app = express();
 
- app.use((req,res,next) =>{
+ app.use('/',(req,res,next) =>{
   console.log("came in first middleware ",req.url,req.method);
+  // res.send("<p>Hello from Home Body!</p>")
   next();
  })
 
-  app.use((req,res,next) =>{
+  app.use('/submit',(req,res,next) =>{
   console.log("came in second middleware ",req.url,req.method);
-res.send("<p>Hello from Express!</p>")
+res.send("<p>Hello from ExpressJS!</p>")
  })
 
-
-const server = http.createServer(app);
-
   const port = 3000;
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`server running at http://localhost:${port}`)
 });
+
 
